@@ -17,3 +17,4 @@ services:
     image: kptunnel
     build: ./kptunnel-docker
     command: '/kptunnel r-wsclient nginx:80'
+    restart: always

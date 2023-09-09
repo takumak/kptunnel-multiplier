@@ -10,6 +10,7 @@ services:
     image: kptunnel
     build: ./kptunnel-docker
     command: '/kptunnel r-wsserver :6666 :88,test:80'
+    restart: always
     ports:
       - '8001:88'
 
