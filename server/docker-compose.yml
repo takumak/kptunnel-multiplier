@@ -6,23 +6,19 @@ services:
     ports:
       - '80:80'
 
-  server1:
+  server1: &server-template
     image: kptunnel
     build: ./kptunnel-docker
-    command: '/kptunnel r-wsserver :6666 :8001,test:80'
+    command: '/kptunnel r-wsserver :6666 :88,test:80'
     ports:
-      - '8001:8001'
+      - '8001:88'
 
   server2:
-    image: kptunnel
-    build: ./kptunnel-docker
-    command: '/kptunnel r-wsserver :6666 :8002,test:80'
+    <<: *server-template
     ports:
-      - '8002:8002'
+      - '8002:88'
 
   server3:
-    image: kptunnel
-    build: ./kptunnel-docker
-    command: '/kptunnel r-wsserver :6666 :8003,test:80'
+    <<: *server-template
     ports:
-      - '8003:8003'
+      - '8003:88'
