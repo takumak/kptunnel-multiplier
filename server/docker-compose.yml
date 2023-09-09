@@ -1,0 +1,28 @@
+services:
+  nginx:
+    image: nginx:1.25
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - '80:80'
+
+  server1:
+    image: kptunnel
+    build: ./kptunnel-docker
+    command: '/kptunnel r-wsserver :6666 :8001,test:80'
+    ports:
+      - '8001:8001'
+
+  server2:
+    image: kptunnel
+    build: ./kptunnel-docker
+    command: '/kptunnel r-wsserver :6666 :8002,test:80'
+    ports:
+      - '8002:8002'
+
+  server3:
+    image: kptunnel
+    build: ./kptunnel-docker
+    command: '/kptunnel r-wsserver :6666 :8003,test:80'
+    ports:
+      - '8003:8003'

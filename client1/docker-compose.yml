@@ -1,0 +1,15 @@
+services:
+  test:
+    image: nginx:1.25
+    volumes:
+      - ./htdocs:/usr/share/nginx/html
+
+  nginx:
+    image: nginx:1.25
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+
+  r-client:
+    image: kptunnel
+    build: ./kptunnel-docker
+    command: '/kptunnel r-wsclient nginx:80'
