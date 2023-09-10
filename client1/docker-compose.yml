@@ -16,5 +16,5 @@ services:
   r-client:
     image: kptunnel
     build: ./kptunnel-docker
-    command: '/kptunnel r-wsclient nginx:80'
+    command: '/kptunnel r-wsclient nginx:80 -pass GrkWYJ0Yz5J6Bh4B'
     restart: always

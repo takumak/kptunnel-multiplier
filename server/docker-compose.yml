@@ -9,17 +9,23 @@ services:
   server1: &server-template
     image: kptunnel
     build: ./kptunnel-docker
-    command: '/kptunnel r-wsserver :6666 :88,client-service:80'
+    environment:
+      - KPTUNNEL_PASSWORD=GrkWYJ0Yz5J6Bh4B
+    command: sh -xec 'exec /kptunnel r-wsserver :6666 :88,client-service:80 -pass $$KPTUNNEL_PASSWORD'
     restart: always
     ports:
       - '8001:88'
 
   server2:
     <<: *server-template
+    environment:
+      - KPTUNNEL_PASSWORD=D3XZALwWBHxAG0tm
     ports:
       - '8002:88'
 
   server3:
     <<: *server-template
+    environment:
+      - KPTUNNEL_PASSWORD=8LCUbYafgKPMViqb
     ports:
       - '8003:88'
