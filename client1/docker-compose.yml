@@ -8,10 +8,10 @@ services:
     image: nginx:1.25
     environment:
       - SERVER_URL=http://172.17.0.1:80/server1
-    command: /bin/sh -c "envsubst '$$SERVER_URL' < /etc/nginx/conf.d/nginx.conf.template > /etc/nginx/conf.d/server.conf && exec nginx -g 'daemon off;'"
+    command: /bin/sh -c "envsubst '$$SERVER_URL' < /etc/nginx/nginx_default.conf.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
     volumes:
       - ./run_nginx.sh:/run_nginx.sh
-      - ./default.conf.template:/etc/nginx/conf.d/default.conf.template
+      - ./nginx_default.conf.template:/etc/nginx/nginx_default.conf.template
 
   r-client:
     image: kptunnel
